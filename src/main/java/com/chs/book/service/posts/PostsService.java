@@ -3,12 +3,14 @@ package com.chs.book.service.posts;
 
 import com.chs.book.domain.posts.Posts;
 import com.chs.book.domain.posts.PostsRepository;
+import com.chs.book.web.dto.PostsListResponseDto;
 import com.chs.book.web.dto.PostsResponseDto;
 import com.chs.book.web.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -36,12 +38,10 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
-//    @Transactional(readOnly = true)
-//    public Lists<PostsListResponseDto> findAllDesc() {
-//        return postsRepository.findAllDesc().stream()
-//                .map(PostsListResponseDTO::new)
-//                .collect(Collectors.toList());
-//    }
-
-
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
 }
