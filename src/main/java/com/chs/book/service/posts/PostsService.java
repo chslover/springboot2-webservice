@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -34,4 +35,13 @@ public class PostsService {
 
         return new PostsResponseDto(entity);
     }
+
+//    @Transactional(readOnly = true)
+//    public Lists<PostsListResponseDto> findAllDesc() {
+//        return postsRepository.findAllDesc().stream()
+//                .map(PostsListResponseDTO::new)
+//                .collect(Collectors.toList());
+//    }
+
+
 }
